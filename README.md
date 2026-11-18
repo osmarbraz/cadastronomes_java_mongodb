@@ -49,7 +49,6 @@ CadastroMongoDB/
 ├── .gitignore
 ├── README.md
 ├── LICENSE
-│
 └── src/
     └── main/
         └── java/
@@ -69,8 +68,7 @@ O banco de dados e a coleção utilizados são:
 ```java
 MongoDatabase banco = clienteMongoDB.getDatabase("test");
 
-MongoCollection<Document> dbTest =
-    banco.getCollection("test");
+MongoCollection<Document> dbTest = banco.getCollection("test");
 ```
 
 - Banco de dados: `test`
@@ -98,11 +96,9 @@ A aplicação apresenta um menu interativo no terminal com as seguintes operaç�
 Permite inserir um novo documento na coleção `test`.
 
 ```java
-Document nomedoc = new Document()
-    .append("nome", nome);
+Document nomedoc = new Document().append("nome", nome);
 
-InsertOneResult resultado =
-    dbTest.insertOne(nomedoc);
+InsertOneResult resultado = dbTest.insertOne(nomedoc);
 ```
 
 O MongoDB gera automaticamente o identificador `_id` do documento.
@@ -112,8 +108,7 @@ O MongoDB gera automaticamente o identificador `_id` do documento.
 Consulta os documentos cadastrados e apresenta os resultados em ordem crescente pelo campo `nome`.
 
 ```java
-for (Document nome :
-    dbTest.find().sort(ascending("nome"))) {
+for (Document nome:dbTest.find().sort(ascending("nome"))) {
     exibirDbTest(nome);
 }
 ```
@@ -134,9 +129,7 @@ O programa valida o formato do identificador utilizando `ObjectId.isValid()`.
 Permite modificar o campo `nome` de um documento existente.
 
 ```java
-dbTest.updateOne(
-    eq("_id", id),
-    combine(set("nome", nome))
+dbTest.updateOne(eq("_id", id), combine(set("nome", nome))
 );
 ```
 
@@ -147,8 +140,7 @@ A atualização utiliza o operador `$set`, que modifica somente o campo informad
 Permite excluir um documento pelo identificador `_id`, solicitando confirmação do usuário antes da operação.
 
 ```java
-DeleteResult resultado =
-    dbTest.deleteOne(eq("_id", id));
+DeleteResult resultado = dbTest.deleteOne(eq("_id", id));
 ```
 
 ## 8. Executando o Projeto
