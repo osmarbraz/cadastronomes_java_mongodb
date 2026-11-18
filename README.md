@@ -118,8 +118,7 @@ for (Document nome:dbTest.find().sort(ascending("nome"))) {
 Permite localizar um documento utilizando seu identificador `_id`.
 
 ```java
-Document mensagem =
-    dbTest.find(eq("_id", id)).first();
+Document mensagem = dbTest.find(eq("_id", id)).first();
 ```
 
 O programa valida o formato do identificador utilizando `ObjectId.isValid()`.
@@ -129,8 +128,7 @@ O programa valida o formato do identificador utilizando `ObjectId.isValid()`.
 Permite modificar o campo `nome` de um documento existente.
 
 ```java
-dbTest.updateOne(eq("_id", id), combine(set("nome", nome))
-);
+dbTest.updateOne(eq("_id", id), combine(set("nome", nome)));
 ```
 
 A atualização utiliza o operador `$set`, que modifica somente o campo informado.
