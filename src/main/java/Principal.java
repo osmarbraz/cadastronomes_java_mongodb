@@ -115,7 +115,7 @@ public class Principal {
 
         System.out.println("\n--- LISTA DE NOMES ---");
 
-        // Variáveis: controla se existem mensagens.
+        // Variáveis: controla se existem nomes.
         boolean encontrou = false;
 
         // Processamento: percorre os documentos em ordem de nome.
@@ -126,7 +126,7 @@ public class Principal {
         }
 
         if (!encontrou) {
-            System.out.println("Nenhuma nome cadastrada.");
+            System.out.println("Nenhum nome cadastrado.");
         }
     }
  
@@ -175,7 +175,7 @@ public class Principal {
             Document existente = dbTest.find(eq("_id", id)).first();
 
             if (existente == null) {
-                System.out.println("NOme não encontrado.");
+                System.out.println("NOme nao encontrado.");
                 return;
             }
 
@@ -194,14 +194,14 @@ public class Principal {
                 return;
             }
 
-            // Processamento: atualiza os campos no banco.
+            // Processamento: atualiza o campo no banco.
             UpdateResult resultado = dbTest.updateOne(
                     eq("_id", id),
-                    combine(set("nome", nome)));
+                    set("nome", nome));
 
             // Saída: informa o resultado da operação.
             if (resultado.getModifiedCount() > 0) {
-                System.out.println("Nome atualizada com sucesso!");
+                System.out.println("Nome atualizado com sucesso!");
             } else {
                 System.out.println("Nenhuma alteracao foi realizada.");
             }
@@ -222,7 +222,7 @@ public class Principal {
         } else {
             ObjectId id = new ObjectId(texto);
 
-            // Processamento: verifica se a mensagem existe.
+            // Processamento: verifica se o nome existe.
             Document mensagem = dbTest.find(eq("_id", id)).first();
 
             if (mensagem == null) {
@@ -249,7 +249,7 @@ public class Principal {
             if (resultado.getDeletedCount() > 0) {
                 System.out.println("Nome excluido com sucesso!");
             } else {
-                System.out.println("Nenhuma mensagem foi excluida.");
+                System.out.println("Nenhum nome foi excluido.");
             }
         }
     }
